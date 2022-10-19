@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/core/routes/app_routes.dart';
-import 'package:flutter_firebase/modules/task/detail_task.dart';
+import 'package:flutter_firebase/modules/task/views/detail_task.dart';
 import 'package:flutter_firebase/modules/login/login_controller.dart';
+import 'package:flutter_firebase/utils/colors.dart';
 import 'package:get/get.dart';
 
 class MyLogin extends StatefulWidget {
@@ -31,13 +32,26 @@ class _MyLoginState extends State<MyLogin> {
           children: [
             Container(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 35, right: 35),
-                    child: Column(
+                  top: MediaQuery.of(context).size.height * 0.10),
+              child: Container(
+                margin: EdgeInsets.only(left: 35, right: 35),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Container(
+                    //     margin: EdgeInsets.only(left: 35, right: 35),
+                    //     height: 65,
+                    //     child: Image.asset("assets/images/logo.png")),
+                    Container(
+                      height: 50,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          color: ColorsScheme.primaryColor,
+                          borderRadius: BorderRadius.circular(8.0)),
+                    ),
+
+                    const SizedBox(height: 40),
+                    Column(
                       children: [
                         TextField(
                           controller: emailController,
@@ -69,14 +83,16 @@ class _MyLoginState extends State<MyLogin> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               'Sign in',
                               style: TextStyle(
-                                  fontSize: 27, fontWeight: FontWeight.w700),
+                                  color: ColorsScheme.primaryColor,
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w700),
                             ),
                             CircleAvatar(
                               radius: 30,
-                              backgroundColor: Color(0xff4c505b),
+                              backgroundColor: ColorsScheme.primaryColor,
                               child: IconButton(
                                   color: Colors.white,
                                   onPressed: () {
@@ -96,13 +112,13 @@ class _MyLoginState extends State<MyLogin> {
                           height: 40,
                         ),
                       ],
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
-            Spacer(),
-            Container(
+            const Spacer(),
+            SizedBox(
                 height: 300,
                 child: Image.asset(
                   "assets/images/healthcare5.png",

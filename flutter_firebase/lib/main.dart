@@ -13,11 +13,8 @@ import 'modules/initial/initial_binding.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // FirebaseFirestore.instance
-  //     .collection("test")
-  //     .doc()
-  //     .set({"hello": "myfirl"}).onError((error, stackTrace) => print(error));
-  runApp(MyApp());
+   
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -31,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     InitialController().cronJob();
-   
+
     super.initState();
   }
 

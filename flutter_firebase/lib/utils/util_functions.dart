@@ -1,4 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:time_formatter/time_formatter.dart';
+
+String showTimeDifference(Timestamp time) {
+  String formatted = formatTime(time.millisecondsSinceEpoch);
+  return formatted;
+}
 
 String readTimestamp(int timestamp) {
   var now = DateTime.now();

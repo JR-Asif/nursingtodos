@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase/core/preferences/preference_data.dart';
 import 'package:flutter_firebase/core/preferences/preference_keys.dart';
 import 'package:flutter_firebase/models/user_model.dart';
-import 'package:flutter_firebase/modules/task/home_controller.dart';
+import 'package:flutter_firebase/modules/task/task_controller.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/instance_manager.dart';
 

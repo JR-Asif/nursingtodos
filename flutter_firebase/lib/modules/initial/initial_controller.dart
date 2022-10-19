@@ -23,25 +23,27 @@ class InitialController extends GetxController {
     shiftId = loginController.myShiftId;
     userId = loginController.myUserId;
     _userDb.doc(userId).get().then((doc) {
-      userModel = UserModel.fromJson(doc.data() as Map<String, dynamic>);
-      shiftId = userModel!.shift_id;
-      print("Shift Id was: $shiftId");
-      if (shiftId == ShiftType.morning_shift.name) {
-        cron.schedule(Schedule.parse('0 14 * * *'), () async {
-          // cron.schedule(Schedule.parse('19 1 * * *'), () async {
-          print('Morning Shift has Ended');
-          passTaskstoNextShift(ShiftType.evening_shift.name);
-        });
-      } else if (shiftId == ShiftType.evening_shift.name) {
-        cron.schedule(Schedule.parse('30 21 * * *'), () async {
-          print('Evening Shift has Ended');
-          passTaskstoNextShift(ShiftType.night_shift.name);
-        });
-      } else if (shiftId == ShiftType.night_shift.name) {
-        cron.schedule(Schedule.parse('30 6 * * *'), () async {
-          print('Night Shift has Ended');
-          passTaskstoNextShift(ShiftType.morning_shift.name);
-        });
+      if (doc.data() != null) {
+        userModel = UserModel.fromJson(doc.data() as Map<String, dynamic>);
+        shiftId = userModel!.shift_id;
+        print("Shift Id was: $shiftId");
+        if (shiftId == ShiftType.morning_shift.name) {
+          cron.schedule(Schedule.parse('0 14 * * *'), () async {
+            // cron.schedule(Schedule.parse('19 1 * * *'), () async {
+            print('Morning Shift has Ended');
+            passTaskstoNextShift(ShiftType.evening_shift.name);
+          });
+        } else if (shiftId == ShiftType.evening_shift.name) {
+          cron.schedule(Schedule.parse('30 21 * * *'), () async {
+            print('Evening Shift has Ended');
+            passTaskstoNextShift(ShiftType.night_shift.name);
+          });
+        } else if (shiftId == ShiftType.night_shift.name) {
+          cron.schedule(Schedule.parse('30 6 * * *'), () async {
+            print('Night Shift has Ended');
+            passTaskstoNextShift(ShiftType.morning_shift.name);
+          });
+        }
       }
     });
   }

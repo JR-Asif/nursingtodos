@@ -4,10 +4,9 @@ import 'package:flutter_firebase/models/task_model.dart';
 import 'package:flutter_firebase/models/user_model.dart';
 import 'package:flutter_firebase/modules/login/login_controller.dart';
 import 'package:get/get.dart';
-import 'package:cron/cron.dart';
 
 class HomeController extends GetxController {
-  String myUserId = "4wpU3gIFdFXVArB9qYtD";
+  String myUserId = LoginController().myUserId;
   bool isTaskLoading = false;
   List<TaskModel> tasks = [];
   List<TaskModel> tasks2 = [];
@@ -72,10 +71,13 @@ class HomeController extends GetxController {
         .where("assignedTo", isEqualTo: myUserId)
         .get()
         .then((querySnapshot) {
+      print(querySnapshot);
       for (var doc in querySnapshot.docs) {
+        print("adding ${doc.id}");
         tasks.add(TaskModel.fromJson(doc.data() as Map<String, dynamic>));
       }
       isTaskLoading = true;
+      print(tasks);
       tasks2.addAll(tasks);
       update();
     });
